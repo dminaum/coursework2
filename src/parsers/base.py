@@ -24,5 +24,3 @@ class Parser(ABC):
         Сохраняет вакансии в файл через file_worker
         """
         self.file_worker.write(self.vacancies)
-
-

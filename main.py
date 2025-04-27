@@ -1,7 +1,12 @@
 from src.file_workers.json_saver import JSONSaver
 from src.parsers.hh_api import HeadHunterAPI
-from src.utils.helpers import from_api_to_list, print_vacancies, \
-    get_top_vacancies, filter_vacancies_by_salary, filter_vacancies_by_keyword
+from src.utils.helpers import (
+    filter_vacancies_by_keyword,
+    filter_vacancies_by_salary,
+    from_api_to_list,
+    get_top_vacancies,
+    print_vacancies,
+)
 
 
 # Функция для взаимодействия с пользователем
@@ -13,13 +18,13 @@ def user_interaction():
     while True:
         salary_range = input("Введите диапазон зарплат (например, 100000 - 150000): ")
         try:
-            salary_from, salary_to = map(int, salary_range.split(' - '))
+            salary_from, salary_to = map(int, salary_range.split(" - "))
             break  # Выход из цикла, если формат правильный
         except ValueError:
             print("Неверный формат диапазона зарплат. Попробуйте снова.")
 
-    file_worker = JSONSaver('data/vacancies1.json')
-    vacancies_result = JSONSaver('data/result_vacancies.json')
+    file_worker = JSONSaver("data/vacancies1.json")
+    vacancies_result = JSONSaver("data/result_vacancies.json")
     hh_api = HeadHunterAPI(file_worker)
 
     response_list = hh_api.load_vacancies(search_query)
@@ -29,10 +34,10 @@ def user_interaction():
     # Фильтруем вакансии по ключевым словам
     filtered_vacancies = filter_vacancies_by_keyword(vacancies_list, key_words)
 
-
     # Фильтруем по диапазону зарплат
-    ranged_vacancies = filter_vacancies_by_salary(filtered_vacancies, salary_from, salary_to)
-
+    ranged_vacancies = filter_vacancies_by_salary(
+        filtered_vacancies, salary_from, salary_to
+    )
 
     # Получаем топ-N вакансий
     top_vacancies = get_top_vacancies(ranged_vacancies, top_n)
