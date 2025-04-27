@@ -1,0 +1,19 @@
+[project]
+name = "skypro-project-2"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Дмитрий Наумов",email = "dmi3naumov@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "requests (>=2.32.3,<3.0.0)",
+    "pytest (>=8.3.5,<9.0.0)",
+    "pytest-cov (>=6.1.1,<7.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
