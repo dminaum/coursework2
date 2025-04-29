@@ -19,8 +19,13 @@ class Parser(ABC):
         """
         return self.vacancies
 
+    @abstractmethod
     def save_to_file(self):
         """
         Сохраняет вакансии в файл через file_worker
         """
-        self.file_worker.write(self.vacancies)
+        pass
+
+    @abstractmethod
+    def __connect(self):
+        pass

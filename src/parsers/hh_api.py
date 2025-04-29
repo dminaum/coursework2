@@ -15,14 +15,6 @@ class HeadHunterAPI(Parser):
         self.json_saver = file_worker
         super().__init__(file_worker)
 
-    def __connect(self):
-        response = requests.get(
-            self.__url, headers=self.__headers, params=self.__params
-        )
-        if response.status_code != 200:
-            raise Exception(f"Ошибка подключения: {response.status_code}")
-        return response.json()
-
     def load_vacancies(self, keyword):
         self.__params["text"] = keyword
         response = self.__connect()
@@ -38,3 +30,17 @@ class HeadHunterAPI(Parser):
 
         self.json_saver.save(all_vacancies)  # Сохраняем все вакансии в файл
         return all_vacancies
+
+    def save_to_file(self):
+        """
+        Сохраняет вакансии в файл через file_worker
+        """
+        self.file_worker.write(self.vacancies)
+
+    def __connect(self):
+        response = requests.get(
+            self.__url, headers=self.__headers, params=self.__params
+        )
+        if response.status_code != 200:
+            raise Exception(f"Ошибка подключения: {response.status_code}")
+        return response.json()

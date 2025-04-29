@@ -1,12 +1,8 @@
 from src.file_workers.json_saver import JSONSaver
 from src.parsers.hh_api import HeadHunterAPI
-from src.utils.helpers import (
-    filter_vacancies_by_keyword,
-    filter_vacancies_by_salary,
-    from_api_to_list,
-    get_top_vacancies,
-    print_vacancies,
-)
+from src.utils.helpers import (filter_vacancies_by_keyword,
+                               filter_vacancies_by_salary, from_api_to_list,
+                               get_top_vacancies, print_vacancies)
 
 
 # Функция для взаимодействия с пользователем
